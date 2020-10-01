@@ -23,6 +23,7 @@ public class Brand {
     @Column(unique = true)
     private String name;
 
+    // Will lead to duplication
    /* @OneToMany
     private List<Product> brandProducts = new ArrayList<Product>();*/
 }

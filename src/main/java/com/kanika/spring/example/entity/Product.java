@@ -33,7 +33,7 @@ public class Product {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name="fk_brand", nullable = false) // Column name will now be brand_id
+    @JoinColumn(name="fk_brand", nullable = false) // Column name will now be fk_brand
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Brand brand;
 

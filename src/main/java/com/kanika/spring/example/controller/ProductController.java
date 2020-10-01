@@ -58,25 +58,25 @@ public class ProductController {
         return productService.deleteProduct(id);
     }
 
-    // Substring: Stream
+    // GET Substring: Stream
     @GetMapping("/productByName/{name}")
     public List<String> findProductByNameUsingStream(@PathVariable String name) {
         return productService.searchProductByNameUsingStream(name);
     }
 
-    // Substring: Stream
+    // GET Substring: SQL
     @GetMapping("/productByNameSQL/{name}")
     public List<String> findProductByNameUsingSQL(@PathVariable String name) {
         return productService.searchProductByNameUsingSQL(name);
     }
 
-    /*// Substring: Stream
+    /*// GET Substring: Completable Future
     @GetMapping("/productUsingCF/{name}")
     public List<String> findProductBySubstringUsingCF(@PathVariable String name) {
         return productService.searchProductByNameUsingCF(name);
     }*/
 
-    // Substring: Stream
+    // GET Substring: Stream
     @GetMapping("/productByBrand/{name}")
     public List<String> findProductByBrand(@PathVariable String name) {
         return productService.searchProductByBrand(name);
