@@ -1,102 +1,89 @@
-package com.kanika.spring.example.service;
+package com.kanika.spring.example.service.product;
 
-import com.kanika.spring.example.entity.Brand;
 import com.kanika.spring.example.entity.Product;
 import com.kanika.spring.example.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductService {
+public class ProductServiceSearchImpl implements ProductServiceSearch {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
-    // POST Method
-    public Product saveProduct (Product product) {
-       return productRepository.save(product);
-    }
-
-    // POST Method
-    public List<Product> saveProducts (List<Product> products) {
-        return productRepository.saveAll(products);
+    //@Autowired
+    public ProductServiceSearchImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     // GET all products
+    @Override
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
 
-    // GET based on ID
+    // GET all products by Id
+    @Override
     public Product getProductById(int id) {
         return productRepository.findById(id).orElse(null);
     }
 
-    // GET based on ID
+    // GET all products by IDs
+    @Override
     public List<Product> getProductByIds(List<Integer> ids) {
         return productRepository.findAllById(ids);
     }
 
-    // GET based on name and quantity
+    // GET product based on name and quantity
+    @Override
     public List<Product> getProductByNameAndQuantity(String name, int quantity) {
         return productRepository.findByNameAndQuantity(name, quantity);
     }
 
-    // DELETE
-    public String deleteProduct(int id) {
-        productRepository.deleteById(id);
-        return "Product removed !! " + id;
-    }
-
-    // PUT
-    public Product updateProduct(Product product) {
-        Product existingProduct = productRepository.findById(product.getId()).orElse(null);
-        existingProduct.setName(product.getName());
-        existingProduct.setQuantity(product.getQuantity());
-        existingProduct.setPrice(product.getPrice());
-        existingProduct.setBrand(product.getBrand());
-        return productRepository.save(existingProduct);
-    }
-
-    // GET using Stream
-    public List<String> searchProductByNameUsingStream(String name)
+    // GET product from name using Stream
+    @Override
+    public List<String> getProductByNameUsingStream(String name)
     {
         List<Product> allProducts = productRepository.findAll();
         allProducts = allProducts.parallelStream()
                 .filter(p -> p.getName().contains(name))
                 .sorted(Comparator.comparingDouble(Product::getPrice))
                 .collect(Collectors.toList());
+        // TODO: DTOs
         return allProducts.stream()
                 .map(o-> (o.getBrand().getName() + ", " + o.getName() + ", Rs."+o.getPrice()))
                 .collect(Collectors.toList());
     }
 
-    public List<String> searchProductByBrand(String name) {
+    // Get product from brand using Parallel Stream
+    @Override
+    public List<String> getProductByBrand(String name) {
         List<Product> allProducts = productRepository.findAll();
         allProducts = allProducts.parallelStream()
                 .filter(p -> p.getBrand().getName().contains(name))
                 .sorted(Comparator.comparing(Product::getName))
                 .collect(Collectors.toList());
+        // TODO: DTOs
         return allProducts.stream()
                 .map(o-> (o.getBrand().getName() + ", " + o.getName() + ", Rs."+o.getPrice()))
                 .collect(Collectors.toList());
     }
 
-    public List<String> searchProductByNameUsingSQL(String name) {
+    // Get product from name using JPA Query
+    @Override
+    public List<String> getProductByNameUsingSQL(String name) {
         List<Product> matchedProducts = productRepository.getProductByName(name);
+        // TODO: DTOs
         return matchedProducts.stream()
                 .map(o-> (o.getBrand().getName() + ", " + o.getName() + ", Rs."+o.getPrice()))
                 .collect(Collectors.toList());
     }
 
-    /*// Get using CompletableFuture
-    public List<String> searchProductByNameUsingCF(String name) {
+    /*// Get product from name using CompletableFuture
+    @Override
+    public List<String> getProductByNameUsingCF(String name) {
         List<Product> allProducts = productRepository.findAll();
         allProducts = allProducts.stream()
                 .filter(p -> CompletableFuture.supplyAsync(() -> p.getName().contains(name)).get()
@@ -108,6 +95,4 @@ public class ProductService {
                 .collect(Collectors.toList());
 
     }*/
-
-    // Get using JPA Query
 }

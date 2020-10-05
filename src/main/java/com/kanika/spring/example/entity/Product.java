@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor // Lombok - All arguments constructor
 @NoArgsConstructor // Lombok - No Argument Constructor
 @Entity // JPA
-@Table // A table with same name as of class
+@Table // A table with same name as of class. @Table specifies primary table for this entity
 public class Product {
     @Id // This is primary key
     @GeneratedValue // By Hibernate, as we don't want to give id on our own
