@@ -1,7 +1,9 @@
 package com.kanika.spring.example.service.brand;
 
+import com.kanika.spring.example.dto.entity.BrandDTO;
 import com.kanika.spring.example.entity.Brand;
 import com.kanika.spring.example.repository.BrandRepository;
+import com.kanika.spring.example.util.dtoToEntityMapper.BrandDTOtoBrand;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +24,12 @@ public class BrandServiceSaveImpl implements BrandServiceSave {
     }*/
 
     @Override
-    public List<Brand> saveBrands (List<Brand> brands) {
-        return brandRepository.saveAll(brands);
+    public List<Brand> saveBrands (List<BrandDTO> brandDTOs) {
+
+        // TODO: Handle here.. Don't let spring handle it
+        List<Brand> saveBrands = BrandDTOtoBrand.convertBrandDTOtoBrand(brandDTOs);
+
+
+        return brandRepository.saveAll(saveBrands);
     }
 }

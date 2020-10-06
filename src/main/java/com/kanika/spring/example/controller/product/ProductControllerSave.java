@@ -1,5 +1,6 @@
 package com.kanika.spring.example.controller.product;
 
+import com.kanika.spring.example.dto.entity.ProductDTO;
 import com.kanika.spring.example.entity.Product;
 import com.kanika.spring.example.service.product.ProductServiceSave;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class ProductControllerSave{
     }*/
 
     @PostMapping
-    List<Product> addProducts(@RequestBody List<Product> products) {
-        return productServiceSave.saveProducts(products);
+    List<Product> addProducts(@RequestBody List<ProductDTO> productDTOs) {
+        return productServiceSave.saveProducts(productDTOs);
     }
 }

@@ -1,7 +1,9 @@
 package com.kanika.spring.example.service.brand;
 
+import com.kanika.spring.example.dto.entity.BrandDTO;
 import com.kanika.spring.example.entity.Brand;
 import com.kanika.spring.example.repository.BrandRepository;
+import com.kanika.spring.example.util.dtoToEntityMapper.BrandDTOtoBrand;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,10 +23,10 @@ public class BrandServiceUpdateImpl implements BrandServiceUpdate  {
     }
 
     @Override
-    public Brand updateBrand(Brand brand) {
-        Brand existingBrand = brandRepository.findById(brand.getId()).orElse(null);
+    public Brand updateBrand(BrandDTO brandDTO, int id) {
+        Brand existingBrand = brandRepository.findById(id).orElse(null);
         assert existingBrand != null;
-        existingBrand.setName(brand.getName());
-        return brandRepository.save(existingBrand);
+        // TODO: Handle Here
+        return brandRepository.save(BrandDTOtoBrand.updateBrandFromBrandDTO(existingBrand,brandDTO));
     }
 }

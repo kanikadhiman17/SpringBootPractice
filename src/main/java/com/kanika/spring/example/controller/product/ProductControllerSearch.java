@@ -3,7 +3,7 @@ package com.kanika.spring.example.controller.product;
 import com.kanika.spring.example.dto.ResponseProductBrandPriceDTO;
 import com.kanika.spring.example.entity.Product;
 import com.kanika.spring.example.service.product.ProductServiceSearch;
-import com.kanika.spring.example.util.ExceptionHandling;
+import com.kanika.spring.example.util.exceptionHandling.ExceptionHandling;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

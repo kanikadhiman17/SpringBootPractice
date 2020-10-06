@@ -1,5 +1,6 @@
 package com.kanika.spring.example.controller.product;
 
+import com.kanika.spring.example.dto.entity.ProductDTO;
 import com.kanika.spring.example.entity.Product;
 import com.kanika.spring.example.service.product.ProductServiceUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ public class ProductControllerUpdate {
         this.productServiceUpdate = productServiceUpdate;
     }
 
-    @PutMapping
-    Product updateProduct(@RequestBody Product product) {
-        return productServiceUpdate.updateProduct(product);
+    @PutMapping("/{id}")
+    Product updateProduct(@RequestBody ProductDTO productDTO, @PathVariable int id) {
+        return productServiceUpdate.updateProduct(productDTO, id);
     }
 
     @DeleteMapping("/{id}")

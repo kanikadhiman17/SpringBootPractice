@@ -4,7 +4,7 @@ import com.kanika.spring.example.dto.ProductBrandPriceDTO;
 import com.kanika.spring.example.dto.ResponseProductBrandPriceDTO;
 import com.kanika.spring.example.entity.Product;
 import com.kanika.spring.example.repository.ProductRepository;
-import com.kanika.spring.example.util.ExceptionHandling;
+import com.kanika.spring.example.util.exceptionHandling.ExceptionHandling;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

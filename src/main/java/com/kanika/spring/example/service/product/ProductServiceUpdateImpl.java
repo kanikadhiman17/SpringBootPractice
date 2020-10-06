@@ -1,7 +1,9 @@
 package com.kanika.spring.example.service.product;
 
+import com.kanika.spring.example.dto.entity.ProductDTO;
 import com.kanika.spring.example.entity.Product;
 import com.kanika.spring.example.repository.ProductRepository;
+import com.kanika.spring.example.util.dtoToEntityMapper.ProductDTOtoProduct;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,13 +25,10 @@ public class ProductServiceUpdateImpl implements ProductServiceUpdate{
 
     // UPDATE product
     @Override
-    public Product updateProduct(Product product) {
-        Product existingProduct = productRepository.findById(product.getId()).orElse(null);
+    public Product updateProduct(ProductDTO productDTO, int id) {
+        Product existingProduct = productRepository.findById(id).orElse(null);
         assert existingProduct != null;
-        existingProduct.setName(product.getName());
-        existingProduct.setQuantity(product.getQuantity());
-        existingProduct.setPrice(product.getPrice());
-        existingProduct.setBrand(product.getBrand());
-        return productRepository.save(existingProduct);
+        // TODO: Handle here
+        return productRepository.save(ProductDTOtoProduct.updateProductFromProductDTO(existingProduct,productDTO));
     }
 }

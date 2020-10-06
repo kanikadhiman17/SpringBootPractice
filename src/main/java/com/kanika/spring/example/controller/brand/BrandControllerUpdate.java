@@ -1,5 +1,6 @@
 package com.kanika.spring.example.controller.brand;
 
+import com.kanika.spring.example.dto.entity.BrandDTO;
 import com.kanika.spring.example.entity.Brand;
 import com.kanika.spring.example.service.brand.BrandServiceUpdate;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,9 @@ public class BrandControllerUpdate{
         this.brandServiceUpdate = brandServiceUpdate;
     }
 
-    @PutMapping
-    Brand updateBrand(@RequestBody Brand brand) {
-        return brandServiceUpdate.updateBrand(brand);
+    @PutMapping("/{id}")
+    Brand updateBrand(@RequestBody BrandDTO brandDTO, @PathVariable int id) {
+        return brandServiceUpdate.updateBrand(brandDTO, id);
     }
 
     @DeleteMapping("/{id}")

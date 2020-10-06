@@ -1,4 +1,4 @@
-package com.kanika.spring.example.util;
+package com.kanika.spring.example.util.exceptionHandling;
 
 import com.kanika.spring.example.dto.ProductBrandPriceDTO;
 import com.kanika.spring.example.dto.ResponseProductBrandPriceDTO;
