@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BrandServiceSave {
 
-    Brand saveBrand(Brand brand);
+    //Brand saveBrand(Brand brand);
     List<Brand> saveBrands (List<Brand> brands);
 
 }

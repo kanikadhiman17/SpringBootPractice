@@ -1,15 +1,28 @@
 package com.kanika.spring.example.controller.product;
 
 import com.kanika.spring.example.entity.Product;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.kanika.spring.example.service.product.ProductServiceUpdate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-public interface ProductControllerUpdate {
+@RestController
+@RequestMapping("/api/v1/products")
+public class ProductControllerUpdate {
 
-    @PutMapping("/updateProduct")
-    Product updateProduct(@RequestBody Product product);
-    @DeleteMapping("/deleteProduct/{id}")
-    String deleteProduct(@PathVariable int id);
+    private final ProductServiceUpdate productServiceUpdate;
+
+    @Autowired
+    public ProductControllerUpdate(ProductServiceUpdate productServiceUpdate) {
+        this.productServiceUpdate = productServiceUpdate;
+    }
+
+    @PutMapping
+    Product updateProduct(@RequestBody Product product) {
+        return productServiceUpdate.updateProduct(product);
+    }
+
+    @DeleteMapping("/{id}")
+    String deleteProduct(@PathVariable int id) {
+        return productServiceUpdate.deleteProduct(id);
+    }
 }

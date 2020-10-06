@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductServiceSave {
 
-    Product saveProduct (Product product);
+    //Product saveProduct (Product product);
     List<Product> saveProducts (List<Product> products);
 
 }

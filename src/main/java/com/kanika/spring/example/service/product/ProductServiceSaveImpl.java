@@ -16,13 +16,11 @@ public class ProductServiceSaveImpl implements ProductServiceSave{
         this.productRepository = productRepository;
     }
 
-    // POST: Saving product
-    @Override
+    /*@Override
     public Product saveProduct (Product product) {
         return productRepository.save(product);
-    }
+    }*/
 
-    // POST: Saving multiple products
     @Override
     public List<Product> saveProducts (List<Product> products) {
         return productRepository.saveAll(products);

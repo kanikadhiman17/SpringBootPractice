@@ -11,14 +11,15 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
-@Data // Lombok
+@Data // Lombok - Getters
 @AllArgsConstructor // Lombok - All arguments constructor
 @NoArgsConstructor // Lombok - No Argument Constructor
 @Entity // JPA
 @Table // A table with same name as of class. @Table specifies primary table for this entity
+@SequenceGenerator(name="seq", initialValue=20001, allocationSize=100000)
 public class Product {
     @Id // This is primary key
-    @GeneratedValue // By Hibernate, as we don't want to give id on our own
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq") // By Hibernate, as we don't want to give id on our own
     private int id;
 
     @NotNull
@@ -36,5 +37,4 @@ public class Product {
     @JoinColumn(name="fk_brand", nullable = false) // Column name will now be fk_brand
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Brand brand;
-
 }

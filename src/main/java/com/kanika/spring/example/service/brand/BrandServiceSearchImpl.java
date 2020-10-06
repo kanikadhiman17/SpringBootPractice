@@ -21,10 +21,10 @@ public class BrandServiceSearchImpl implements BrandServiceSearch {
         return brandRepository.findAll();
     }
 
-    @Override
+    /*@Override
     public Brand getBrandById(int id) {
         return brandRepository.findById(id).orElse(null);
-    }
+    }*/
 
     @Override
     public List<Brand> getBrandByIds(List<Integer> ids) {

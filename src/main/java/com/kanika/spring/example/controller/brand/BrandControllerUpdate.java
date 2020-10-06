@@ -1,15 +1,27 @@
 package com.kanika.spring.example.controller.brand;
 
 import com.kanika.spring.example.entity.Brand;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.kanika.spring.example.service.brand.BrandServiceUpdate;
+import org.springframework.web.bind.annotation.*;
 
-public interface BrandControllerUpdate {
+@RestController
+@RequestMapping("/api/v1/brands")
+public class BrandControllerUpdate{
 
-    @PutMapping("/updateBrand")
-    public abstract Brand updateBrand(@RequestBody Brand brand);
-    @DeleteMapping("/deleteBrand/{id}")
-    public abstract String deleteBrand(@PathVariable int id);
+    private final BrandServiceUpdate brandServiceUpdate;
+
+    //@Autowired
+    public BrandControllerUpdate(BrandServiceUpdate brandServiceUpdate) {
+        this.brandServiceUpdate = brandServiceUpdate;
+    }
+
+    @PutMapping
+    Brand updateBrand(@RequestBody Brand brand) {
+        return brandServiceUpdate.updateBrand(brand);
+    }
+
+    @DeleteMapping("/{id}")
+    String deleteBrand(@PathVariable int id) {
+        return brandServiceUpdate.deleteBrand(id);
+    }
 }

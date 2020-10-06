@@ -1,5 +1,7 @@
 package com.kanika.spring.example.service.product;
 
+import com.kanika.spring.example.dto.ProductBrandPriceDTO;
+import com.kanika.spring.example.dto.ResponseProductBrandPriceDTO;
 import com.kanika.spring.example.entity.Product;
 
 import java.util.List;
@@ -9,10 +11,9 @@ public interface ProductServiceSearch {
     List<Product> getProducts();
     Product getProductById(int id);
     List<Product> getProductByIds(List<Integer> ids);
-    List<Product> getProductByNameAndQuantity(String name, int quantity);
-    List<String> getProductByNameUsingStream(String name);
-    List<String> getProductByBrand(String name);
-    List<String> getProductByNameUsingSQL(String name);
-    //List<String> getProductByNameUsingCF(String name);
-
+    ResponseProductBrandPriceDTO getProductByNameAndBrand(String name, String brand, int pageNo, int size);
+    ResponseProductBrandPriceDTO getProductByName(String name);
+    ResponseProductBrandPriceDTO getProductByBrand(String name);
+    //List<ProductBrandPriceDTO> getProductByNameUsingSQL(String name);
+    //List<ProductBrandPriceDTO> getProductByNameUsingCF(String name);
 }

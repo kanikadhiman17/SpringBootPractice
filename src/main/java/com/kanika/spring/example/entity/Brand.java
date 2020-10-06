@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,6 +22,6 @@ public class Brand {
     private String name;
 
     // Will lead to duplication
-   /* @OneToMany
+    /* @OneToMany
     private List<Product> brandProducts = new ArrayList<Product>();*/
 }

@@ -5,7 +5,7 @@ import com.kanika.spring.example.repository.BrandRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public abstract class BrandServiceUpdateImpl implements BrandServiceUpdate  {
+public class BrandServiceUpdateImpl implements BrandServiceUpdate  {
 
     private final BrandRepository brandRepository;
 
