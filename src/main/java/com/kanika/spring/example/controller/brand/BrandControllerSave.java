@@ -1,8 +1,8 @@
 package com.kanika.spring.example.controller.brand;
 
-import com.kanika.spring.example.dto.entity.BrandDTO;
-import com.kanika.spring.example.entity.Brand;
-import com.kanika.spring.example.service.brand.BrandServiceSave;
+import com.kanika.spring.example.domain.persistence.entity.Brand;
+import com.kanika.spring.example.domain.persistence.entity.BrandDTO;
+import com.kanika.spring.example.domain.service.brand.BrandServiceSave;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +18,9 @@ public class BrandControllerSave{
         this.brandServiceSave = brandServiceSave;
     }
 
-    /*
-    @PostMapping("")
-    public Brand addBrand(@RequestBody Brand brand) {
+
+    /*@PostMapping("")
+    public Brand addBrand(@RequestBody BrandDTO brand) {
         return brandServiceSave.saveBrand(brand); // Shows saved brand
     }*/
 

@@ -1,7 +1,7 @@
 package com.kanika.spring.example.controller.brand;
 
-import com.kanika.spring.example.entity.Brand;
-import com.kanika.spring.example.service.brand.BrandServiceSearch;
+import com.kanika.spring.example.domain.persistence.entity.Brand;
+import com.kanika.spring.example.domain.service.brand.BrandServiceSearch;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,18 +22,13 @@ public class BrandControllerSearch {
         return brandServiceSearch.getBrands();
     }
 
-    /*@GetMapping("/id/{id}")
-    public Brand findBrandById(@PathVariable int id) {
-        return brandServiceSearch.getBrandById(id);
-    }*/
-
     @GetMapping
     List<Brand> findBrandByIds(@RequestParam(name = "id") List<Integer> ids) {
         return brandServiceSearch.getBrandByIds(ids);
     }
 
     @GetMapping("/{name}")
-    List<Brand> findBrandByName(@PathVariable String name) {
+    Brand findBrandByName(@PathVariable String name) {
         return brandServiceSearch.getBrandByName(name);
     }
 }
